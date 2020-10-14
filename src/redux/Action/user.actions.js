@@ -1,11 +1,9 @@
 import axios from "axios";
 import jwt from "jwt-decode";
 
-// constant
 export const REGISTER = "REGISTER";
 export const LOGIN = "LOGIN";
 
-// functionnya dari constant
 export const setRegister = (data) => {
   return {
     type: REGISTER,
@@ -20,13 +18,12 @@ export const setLogin = (data) => {
   };
 };
 
-// function isi dari setnya
 export const registerActions = (values, event, history) => (dispatch) => {
   event.preventDefault();
-  console.log("tes param", values);
+  console.log("testing paramternya apakah berhasil", values);
 
   return axios
-    .post("https://zan-exgen-moongoose.herokuapp.com/student", values)
+    .post("https://server-login-register.herokuapp.com/register", values)
     .then((response) => {
       console.log("res", response);
       dispatch(setRegister(response.data.student));
@@ -40,15 +37,15 @@ export const registerActions = (values, event, history) => (dispatch) => {
 export const loginActions = (values, event, history) => {
   return (dispatch) => {
     event.preventDefault();
-    console.log("tes berhasil", values);
+    console.log("testing apakah berhasil", values);
 
     return axios
-      .post("https://zan-exgen-moongoose.herokuapp.com/student/login", values)
+      .post("https://server-login-register.herokuapp.com/register/login", values)
       .then((response) => {
         console.log(response);
 
         if (response.data.token !== undefined) {
-          console.log("bener tokennya ada");
+          console.log("benar tokennya sudah ada");
           localStorage.setItem("token", response.data.token);
           document.cookie = `token=${response.data.token}`;
           let JWTdecode = jwt(response.data.token);

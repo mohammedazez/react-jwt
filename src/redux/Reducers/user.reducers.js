@@ -1,6 +1,4 @@
 import { REGISTER, LOGIN } from "../Action/user.actions";
-
-// check token
 const token = localStorage.getItem("token");
 
 const initialState = token
@@ -14,10 +12,8 @@ const initialState = token
       registerData: [],
     };
 
-// reducers user
-
 const student = (state = initialState, action) => {
-  // console.log("tes", action);
+  // console.log("testing", action);
   // console.log("data", action.payload);
   switch (action.type) {
     case REGISTER:
